@@ -292,8 +292,8 @@ public:
 
 	int hackrf_rx_callback( int8_t *buffer, int32_t length );
 
-
-
+  // get buffer usage
+  SoapySDR::Kwargs getChannelInfo(const int direction, const size_t channel) const;
 
 private:
 

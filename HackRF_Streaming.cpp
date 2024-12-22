@@ -59,6 +59,19 @@ int SoapyHackRF::hackrf_rx_callback( int8_t *buffer, int32_t length )
 	return(0);
 }
 
+SoapySDR::Kwargs SoapyHackRF::getChannelInfo(const int direction,
+                                             const size_t channel) const {
+  std::map<std::string, std::string> channelInfo;
+
+  if (direction == SOAPY_SDR_RX) {
+    channelInfo["buffer_count"] = std::to_string(_rx_stream.buf_count);
+  } else if (direction == SOAPY_SDR_TX) {
+    channelInfo["buffer_count"] = std::to_string(_tx_stream.buf_count);
+  }
+
+  return channelInfo;
+}
+
 
 int SoapyHackRF::hackrf_tx_callback( int8_t *buffer, int32_t length  )
 {
